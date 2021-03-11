@@ -1,6 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { EncrptionService } from 'src/Utilities/encrption.service';
 import { FormValidators } from 'src/Utilities/FormValidation';
 import { LandingPageService } from './landing-page.service';
@@ -25,7 +26,8 @@ export class LandingPageComponent implements OnInit {
   vehicleModelData = [''];
   premiumAmountValue = 0;
   constructor(public landingPageService: LandingPageService,
-    public encryptionService: EncrptionService) { }
+    public encryptionService: EncrptionService,
+    private toastr: ToastrService,) { }
   
 
   ngOnInit(): void {
@@ -102,7 +104,15 @@ export class LandingPageComponent implements OnInit {
     return this.form.get('dateOFBirth');
   }
 
-  
+  disableLoaders(){
+    this.showLoader = false
+    this.disableButton = false;
+  }
+
+  showLoaders(){
+    this.showLoader = true
+    this.disableButton = true
+  }
   
   bindVehicleModel(e) {
     this.vehicleModelData = this.vehicleData.filter(item => item.Make === e.target.value)[0].Model
@@ -120,9 +130,18 @@ export class LandingPageComponent implements OnInit {
       return;
 
     }
+    this.showLoaders()
 
-    this.landingPageService.submitThirdPartyBookingForm(this.encryptionService.SubmitData(this.form)).subscribe((resp) => console.log(resp))
-    console.log(JSON.stringify(this.encryptionService.SubmitData(this.form)))
+    this.landingPageService.submitThirdPartyBookingForm(this.encryptionService.SubmitData(this.form)).subscribe((resp) => {
+      console.log(resp)
+      this.toastr.success(resp.message)
+      this.disableLoaders()
+    },
+    (error) => {
+      console.log(error.error.message)
+      this.toastr.error(error.error.message);
+      this.disableLoaders()
+    })
 
   }
 

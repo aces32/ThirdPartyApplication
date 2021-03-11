@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialUiModule } from 'src/Utilities/material-ui.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialUiModule,
+    ToastrModule.forRoot(
+      {  positionClass: 'toast-bottom-right'}
+    ),
     HttpClientModule
   ],
   providers: [],
