@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  enviromentURL: "http://sharpgasapi.somee.com/",
+  enviromentURL: "https://sharpgasapi.somee.com/",
   ThirdPartyBookingpoint: "api/ThirdPartyBooking",
 };
 
