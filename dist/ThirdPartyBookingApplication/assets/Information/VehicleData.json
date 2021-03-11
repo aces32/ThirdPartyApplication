@@ -1,0 +1,31 @@
+{
+	"VehicleData": [
+		{
+		  "Make": "Toyota",
+		  "Model": ["Camry", "Corolla"]
+		},
+		{
+			"Make": "Honda",
+			"Model": ["Accord", "Civic"]
+		}
+	  ],
+
+	"Body": [
+		{
+			"Type": "CAR",
+			"Premium": 5000
+		},
+		{
+			"Type": "SUV",
+			"Premium": 5000
+		},
+		{
+			"Type": "TRUCK",
+			"Premium": 7500
+		},
+		{
+			"Type": "VAN",
+			"Premium": 5000
+		}
+	]
+}

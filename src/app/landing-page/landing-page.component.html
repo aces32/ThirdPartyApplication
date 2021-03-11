@@ -1,0 +1,259 @@
+
+<div class="container-fluid main-container">
+    <div class="row">
+      <div class="col-md-6 image-app">
+  
+      </div>
+      <div class="col-md-6 container-right right-view">
+        <nav class="nav navbar navbar-expand-lg navbar-light">
+          <a class="navbar-brand mr-auto" href="#">
+
+          </a>
+          <div class="navbar-nav">
+            <a class="navbar-brand mr-auto" href="#">
+              <img
+                src="../../../assets/img/Allianz.png"
+                alt="Logo"
+                class="logo"
+              />
+            </a>
+          </div>
+          
+        </nav>
+        <div class="signup-content">
+          <form
+            method="POST"
+            id="signup-form"
+            class="signup-form"
+            [formGroup]="form"
+            (ngSubmit)="submitForm()"
+          >
+            <div class="form-title">Purchase Vehicle Third Party Policy</div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                formControlName="firstName"
+                id="firstName"
+                placeholder="First Name"
+              />
+              <div
+                class="small alert alert-danger"
+                *ngIf="firstName.touched && firstName.invalid"
+              >
+                <span *ngIf="!!firstName.errors.required"
+                  >First name is required</span
+                >
+                <span *ngIf="!!firstName.errors.pattern"
+                  >Only alphabets are allowed</span
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                formControlName="lastName"
+                id="lastName"
+                placeholder="Last Name"
+              />
+              <div
+                class="small alert alert-danger"
+                *ngIf="lastName.touched && lastName.invalid"
+              >
+                <span *ngIf="!!lastName.errors.required"
+                  >Last name is required</span
+                >
+                <span *ngIf="!!lastName.errors.pattern"
+                  >Only alphabets are allowed</span
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                formControlName="emailAdd"
+                id="email"
+                placeholder="Your Email"
+              />
+              <div
+                class="small alert alert-danger"
+                *ngIf="emailAdd.touched && emailAdd.invalid"
+              >
+                <span *ngIf="!!emailAdd.errors.required"
+                  >Email address is required</span
+                >
+                <span *ngIf="!!emailAdd.errors.email"
+                  >Email address is invalid</span
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="mobileNumber"
+                formControlName="mobileNumber"
+                id="mobileNumber"
+                placeholder="Mobile Number"
+              />
+              <div
+                class="small alert alert-danger"
+                *ngIf="mobileNumber.touched && mobileNumber.invalid"
+              >
+                <span *ngIf="!!mobileNumber.errors.required"
+                  >Mobile Number is required</span
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="date"
+                class="form-control"
+                name="dateOFBirth"
+                formControlName="dateOFBirth"
+                id="dateOFBirth"
+                placeholder="Date OF Birth"
+              />
+              <!-- <div
+                class="small alert alert-danger"
+                *ngIf="dateOFBirth.touched && dateOFBirth.invalid"
+              >
+                <span *ngIf="!!dateOFBirth.errors.required"
+                  >Date OF Birth is required</span
+                >
+              </div> -->
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="registrationNumber"
+                formControlName="registrationNumber"
+                id="registrationNumber"
+                placeholder="Vehicle Registration Number"
+              />
+              <div
+                class="small alert alert-danger"
+                *ngIf="registrationNumber.touched && registrationNumber.invalid"
+              >
+                <span *ngIf="!!registrationNumber.errors.required"
+                  >Vehicle Registration Number is required</span
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <select formControlName="vehicleMake" class="form-control" (change)="bindVehicleModel($event)" >
+                  <option disabled>Vehicle Make</option>
+                  <option>Choose Vehicle Make</option>
+                  <option *ngFor="let data of vehicleData">{{data.Make}}</option>
+              </select>
+              <div
+                class="small alert alert-danger"
+                *ngIf="vehicleMake.touched && vehicleMake.invalid"
+              >
+                <span *ngIf="!!vehicleMake.errors.required"
+                  >please select a Vehicle make</span
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <select formControlName="vehicleModel" class="form-control" >
+                  <option disabled>Vehicle Model</option>
+                  <option>Choose Vehicle Model</option>
+                  <option *ngFor="let data of vehicleModelData">{{data}}</option>
+              </select>
+              <div
+                class="small alert alert-danger"
+                *ngIf="vehicleModel.touched && vehicleModel.invalid"
+              >
+                <span *ngIf="!!vehicleModel.errors.required"
+                  >please select a vehicle model</span
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <select formControlName="bodyType" class="form-control" (change)="bindBodyModel($event)">
+                  <option disabled>Body Type</option>
+                  <option>Choose Body Type</option>
+                  <option *ngFor="let data of bodyData">{{data.Type}}</option>
+              </select>
+              <div
+                class="small alert alert-danger"
+                *ngIf="bodyType.touched && bodyType.invalid"
+              >
+                <span *ngIf="!!bodyType.errors.required"
+                  >Please select a body type</span
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                type="decimal"
+                class="form-control"
+                name="premium"
+                formControlName="premium"
+                id="premium"
+                placeholder="Premium Amount"
+                [(ngModel)]="premiumAmountValue" 
+                [readonly] = true
+              />
+              <div
+                class="small alert alert-danger"
+                *ngIf="premium.touched && premium.invalid"
+              >
+                <span *ngIf="!!premium.errors.required"
+                  >Premium Amount must be included</span
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  name="agreeTerm"
+                  class="form-check-input"
+                  formControlName="agreeTerm"
+                />
+                <label for="agreeTerm" class="label-agree-term"
+                  ><span><span></span></span>I agree
+                  <a href="#" class="term-service">Terms of Conditions</a></label
+                >
+                <div
+                  class="small alert alert-success back-grey"
+                  *ngIf="agreeTerm.touched || agreeTerm.invalid"
+                >
+                  <span *ngIf="form.hasError('required', 'agreeTerm')"
+                    >Kindly agree to terms and conditions</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button
+                type="submit"
+                name="submit"
+                id="submit"
+                [disabled]="!disableButton"
+                class="form-submit"
+                value="Sign up"
+                [disabled]="disableButton"
+              >
+                Sign up
+                <i
+                  class="fa fa-spinner fa-spin fs-22 float-r"
+                  *ngIf="showLoader"
+                ></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
