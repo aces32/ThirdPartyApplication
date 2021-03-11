@@ -319,7 +319,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    enviromentURL: "https://localhost:44381/",
+    enviromentURL: "https://sharpgasapi.somee.com/",
     ThirdPartyBookingpoint: "api/ThirdPartyBooking",
 };
 /*
@@ -837,6 +837,7 @@ class LandingPageComponent {
         this.showLoaders();
         this.landingPageService.submitThirdPartyBookingForm(this.encryptionService.SubmitData(this.form)).subscribe((resp) => {
             console.log(resp);
+            this.form.reset();
             this.toastr.success(resp.message);
             this.disableLoaders();
         }, (error) => {
