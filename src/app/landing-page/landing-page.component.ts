@@ -134,6 +134,7 @@ export class LandingPageComponent implements OnInit {
 
     this.landingPageService.submitThirdPartyBookingForm(this.encryptionService.SubmitData(this.form)).subscribe((resp) => {
       console.log(resp)
+      this.form.reset();
       this.toastr.success(resp.message)
       this.disableLoaders()
     },
